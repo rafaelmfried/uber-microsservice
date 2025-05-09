@@ -1,0 +1,81 @@
+services:
+  uber-service:
+    build:
+      context: .
+      dockerfile: apps/uber-service/Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - mongo
+      - rabbitmq
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://user:password@postgres:5432/dbname
+      - MONGO_URL=mongodb://mongo:27017/dbname
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+  logging-service:
+    build:
+      context: .
+      dockerfile: apps/logging-service/Dockerfile
+    ports:
+      - 3001:3000
+    depends_on:
+      - postgres
+      - mongo
+      - rabbitmq
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://user:password@postgres:5432/dbname
+      - MONGO_URL=mongodb://mongo:27017/dbname
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+  rider-service:
+    build:
+      context: .
+      dockerfile: apps/rider-service/Dockerfile
+    ports:
+      - 3003:3000
+    depends_on:
+      - postgres
+      - mongo
+      - rabbitmq
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://user:password@postgres:5432/dbname
+      - MONGO_URL=mongodb://mongo:27017/dbname
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:6
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+
+volumes:
+  postgres_data:
+  mongo_data:
+  es_data:
