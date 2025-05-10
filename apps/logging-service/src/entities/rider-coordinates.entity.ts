@@ -1,5 +1,12 @@
-import { Column, CreateDateColumn, ObjectId, ObjectIdColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectId,
+  ObjectIdColumn,
+} from 'typeorm';
 
+@Entity('rider_coordinates')
 export class RiderCoordinates {
   @ObjectIdColumn()
   id: ObjectId;
