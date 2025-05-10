@@ -7,6 +7,7 @@ export class LoggingServiceController {
 
   @Get()
   async getHello(): Promise<number> {
+    // TEstando reload
     return await this.loggingServiceService.getHello();
   }
 }

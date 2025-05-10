@@ -17,6 +17,8 @@ services:
       - DATABASE_URL=postgres://user:password@postgres:5432/dbname
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
+    volumes:
+      - ./apps/uber-service/:/app/apps/uber-service/
   logging-service:
     build:
       context: .
@@ -36,6 +38,8 @@ services:
       - DATABASE_URL=postgres://user:password@postgres:5432/dbname
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
+    volumes:
+      - ./apps/logging-service/:/app/apps/logging-service/
   rider-service:
     build:
       context: .
@@ -54,6 +58,8 @@ services:
       - DATABASE_URL=postgres://user:password@postgres:5432/dbname
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
+    volumes:
+      - ./apps/rider-service/:/app/apps/rider-service/
 
   postgres:
     image: postgres:15

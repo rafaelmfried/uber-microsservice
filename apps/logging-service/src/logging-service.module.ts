@@ -10,10 +10,10 @@ import { RiderCoordinatesModule } from './rider-coordinates/rider-coordinates.mo
     TypeOrmModule.forRootAsync({
       useFactory: async () => ({
         type: 'mongodb',
-        url: 'mongodb://localhost:27017/logging',
+        url: 'mongodb://mongo:27017/logging',
         synchronize: true,
-        entities: [RiderCoordinates],
         logging: true,
+        entities: [RiderCoordinates],
       }),
     }),
     RiderCoordinatesModule,
