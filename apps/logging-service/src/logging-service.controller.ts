@@ -6,7 +6,7 @@ export class LoggingServiceController {
   constructor(private readonly loggingServiceService: LoggingServiceService) {}
 
   @Get()
-  getHello(): string {
-    return this.loggingServiceService.getHello();
+  async getHello(): Promise<number> {
+    return await this.loggingServiceService.getHello();
   }
 }
