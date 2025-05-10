@@ -2,7 +2,10 @@ services:
   uber-service:
     build:
       context: .
-      dockerfile: apps/uber-service/Dockerfile
+      dockerfile: Dockerfile
+      args:
+        - APP=uber-service
+      target: development
     ports:
       - 3000:3000
     depends_on:
@@ -17,7 +20,11 @@ services:
   logging-service:
     build:
       context: .
-      dockerfile: apps/logging-service/Dockerfile
+      dockerfile: Dockerfile
+      args:
+        - APP=logging-service
+      target: development
+    restart: unless-stopped
     ports:
       - 3001:3000
     depends_on:
@@ -32,7 +39,10 @@ services:
   rider-service:
     build:
       context: .
-      dockerfile: apps/rider-service/Dockerfile
+      dockerfile: Dockerfile
+      args:
+        - APP=rider-service
+      target: development
     ports:
       - 3003:3000
     depends_on:
