@@ -1,10 +1,10 @@
 services:
-  uber-service:
+  uber:
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        - APP=uber-service
+        - APP=uber
       target: development
     ports:
       - 3000:3000
@@ -18,13 +18,13 @@ services:
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
     volumes:
-      - ./apps/uber-service/:/app/apps/uber-service/
-  logging-service:
+      - ./apps/uber/:/app/apps/uber/
+  logging:
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        - APP=logging-service
+        - APP=logging
       target: development
     restart: unless-stopped
     ports:
@@ -39,13 +39,13 @@ services:
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
     volumes:
-      - ./apps/logging-service/:/app/apps/logging-service/
-  rider-service:
+      - ./apps/logging/:/app/apps/logging/
+  rider:
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        - APP=rider-service
+        - APP=rider
       target: development
     ports:
       - 3003:3000
@@ -59,10 +59,11 @@ services:
       - MONGO_URL=mongodb://mongo:27017/dbname
       - RABBITMQ_URL=amqp://rabbitmq:5672
     volumes:
-      - ./apps/rider-service/:/app/apps/rider-service/
+      - ./apps/rider/:/app/apps/rider/
 
   postgres:
     image: postgres:15
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: user
@@ -75,6 +76,7 @@ services:
 
   mongo:
     image: mongo:6
+    container_name: mongo
     restart: always
     ports:
       - 27017:27017
@@ -83,6 +85,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: rabbitmq
     restart: always
     ports:
       - 5672:5672

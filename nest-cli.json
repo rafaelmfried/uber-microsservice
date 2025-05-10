@@ -1,40 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/uber-service/src",
+  "sourceRoot": "apps/uber/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/uber-service/tsconfig.app.json"
+    "tsConfigPath": "apps/uber/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/uber-service",
+  "root": "apps/uber",
   "projects": {
-    "uber-service": {
+    "logging": {
       "type": "application",
-      "root": "apps/uber-service",
+      "root": "apps/logging",
       "entryFile": "main",
-      "sourceRoot": "apps/uber-service/src",
+      "sourceRoot": "apps/logging/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/uber-service/tsconfig.app.json"
-      }
-    },
-    "logging-service": {
-      "type": "application",
-      "root": "apps/logging-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/logging-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/logging-service/tsconfig.app.json"
-      }
-    },
-    "rider-service": {
-      "type": "application",
-      "root": "apps/rider-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/rider-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/rider-service/tsconfig.app.json"
+        "tsConfigPath": "apps/logging/tsconfig.app.json"
       }
     },
     "shared": {
@@ -44,6 +26,24 @@
       "sourceRoot": "libs/shared/src",
       "compilerOptions": {
         "tsConfigPath": "libs/shared/tsconfig.lib.json"
+      }
+    },
+    "rider": {
+      "type": "application",
+      "root": "apps/rider",
+      "entryFile": "main",
+      "sourceRoot": "apps/rider/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rider/tsconfig.app.json"
+      }
+    },
+    "uber": {
+      "type": "application",
+      "root": "apps/uber",
+      "entryFile": "main",
+      "sourceRoot": "apps/uber/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/uber/tsconfig.app.json"
       }
     }
   }
