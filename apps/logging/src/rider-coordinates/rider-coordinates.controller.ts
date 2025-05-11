@@ -19,9 +19,7 @@ export class RiderCoordinatesController {
     saveRiderCoordinatesDto: SaveRiderCoordinatesDto,
   ): Promise<any> {
     return await this.riderCoordinatesService.saveRiderCoordinates(
-      saveRiderCoordinatesDto.riderId,
-      saveRiderCoordinatesDto.latitude,
-      saveRiderCoordinatesDto.longitude,
+      saveRiderCoordinatesDto,
     );
   }
 }

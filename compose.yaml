@@ -7,7 +7,7 @@ services:
         - APP=uber
       target: development
     ports:
-      - 3000:3000
+      - 3010:3000
     depends_on:
       - postgres
       - mongo
@@ -48,7 +48,7 @@ services:
         - APP=rider
       target: development
     ports:
-      - 3003:3000
+      - 3000:3000
     depends_on:
       - postgres
       - mongo
